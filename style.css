@@ -1,0 +1,474 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #fff; /* White text for better contrast */
+    background-color: #0a0a0a; /* Dark background */
+  }
+  
+  h1, h2, h3 {
+    color: #8B0000; /* Maroon for headings */
+  }
+  
+  a {
+    color: #8B0000; /* Maroon for links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #ff4500; /* Orange-red for hover effect */
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+
+/* Navigation Bar */
+nav {
+    background: #0a0a0a; /* Dark background */
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: 2px solid #8B0000; /* Maroon border */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8B0000; /* Maroon logo */
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: #8B0000; /* Maroon on hover */
+  }
+  
+  nav ul li a.active {
+    color: #8B0000; /* Maroon for active link */
+    border-bottom: 2px solid #8B0000; /* Underline for active link */
+  }
+
+  /* Hero Section */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    overflow: hidden;
+  }
+  
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hero-content h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content h1 .typing {
+    color: #8B0000; /* Maroon for typing effect */
+  }
+  
+  .hero-content p {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: #8B0000; /* Maroon button */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #ff4500; /* Orange-red on hover */
+    transform: translateY(-5px);
+  }
+  
+  /* Animated Background */
+  #hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #8B0000, #ff4500, #8B0000);
+    opacity: 0.1;
+    z-index: 1;
+    animation: gradientAnimation 10s infinite alternate;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
+  
+  /* About Section */
+  #about {
+    padding: 3rem 0;
+    background: #1a1a1a; /* Slightly lighter dark background */
+  }
+  
+  .about-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .about-content img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #8B0000; /* Maroon border */
+  }
+  
+  /* Experience Section */
+  #experience {
+    padding: 3rem 0;
+    background: #0a0a0a; /* Dark background */
+  }
+  
+  .experience-item {
+    background: #1a1a1a; /* Slightly lighter dark background */
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: 1px solid #8B0000; /* Maroon border */
+  }
+  
+  .experience-item h3 {
+    margin-top: 0;
+    color: #8B0000; /* Maroon heading */
+  }
+  
+  /* Projects Section */
+  #projects {
+    padding: 3rem 0;
+    background: #1a1a1a; /* Slightly lighter dark background */
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  
+  .project-card {
+    background: #0a0a0a; /* Dark background */
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #8B0000; /* Maroon border */
+  }
+  
+  .project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #8B0000; /* Maroon border */
+  }
+  
+  .project-card h3 {
+    color: #8B0000; /* Maroon heading */
+  }
+  
+/* Skills Section */
+#skills {
+    padding: 3rem 0;
+    background: #0a0a0a; /* Dark background */
+  }
+  
+  #skills h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #8B0000; /* Maroon heading */
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .skills-category {
+    background: #1a1a1a; /* Slightly lighter dark background */
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #8B0000; /* Maroon border */
+  }
+  
+  .skills-category h3 {
+    margin-top: 0;
+    color: #8B0000; /* Maroon heading */
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  
+  .skills-list span {
+    background: #8B0000; /* Maroon background */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  
+  .skills-list span:hover {
+    background: #ff4500; /* Orange-red on hover */
+  }
+
+/* Contact Section */
+#contact {
+    padding: 3rem 0;
+    background: #1a1a1a; /* Slightly lighter dark background */
+    text-align: center;
+  }
+  
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #8B0000; /* Maroon border on focus */
+    outline: none;
+  }
+  
+  .form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+  }
+  
+  .contact-form .btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: #8B0000; /* Maroon button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .contact-form .btn:hover {
+    background: #ff4500; /* Orange-red on hover */
+  }
+/* Social Links */
+.social-links {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    background: #8B0000; /* Maroon background on hover */
+    color: #fff;
+    border-color: #8B0000;
+  }
+  
+  .social-links a i {
+    font-size: 1.2rem;
+  }
+  /* Footer */
+  footer {
+    background: #0a0a0a; /* Dark background */
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 2px solid #8B0000; /* Maroon border */
+  }
+
+  /* Scroll Animations */
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Back to Top Button */
+  .back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: #8B0000; /* Maroon background */
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+  }
+  
+  .back-to-top:hover {
+    background: #ff4500; /* Orange-red on hover */
+  }
+
+  /* Blogs Section */
+#blogs {
+    padding: 3rem 0;
+    background: #0a0a0a; /* Dark background */
+  }
+  
+  #blogs h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #8B0000; /* Maroon heading */
+  }
+  
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .blog-card {
+    background: #1a1a1a; /* Slightly lighter dark background */
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #8B0000; /* Maroon border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  
+  .blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-card h3 {
+    color: #8B0000; /* Maroon heading */
+    margin-bottom: 0.5rem;
+  }
+  
+  .blog-card p {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-card .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #8B0000; /* Maroon button */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .blog-card .btn:hover {
+    background: #ff4500; /* Orange-red on hover */
+  }
