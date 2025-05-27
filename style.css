@@ -1,130 +1,139 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: #fff; /* White text for better contrast */
-    background-color: #0a0a0a; /* Dark background */
-  }
-  
-  h1, h2, h3 {
-    color: #8B0000; /* Maroon for headings */
-  }
-  
-  a {
-    color: #8B0000; /* Maroon for links */
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #ff4500; /* Orange-red for hover effect */
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #f0f0f0;
+  background-color: #121212; /* Dark elegant background */
+}
+
+h1, h2, h3 {
+  color: #00BFA6; /* Teal accent */
+}
+
+a {
+  color: #00BFA6;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFD700; /* Gold hover */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 /* Navigation Bar */
 nav {
-    background: #0a0a0a; /* Dark background */
-    color: #fff;
-    padding: 1rem 0;
-    border-bottom: 2px solid #8B0000; /* Maroon border */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  nav .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #8B0000; /* Maroon logo */
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #73c49f; /* Maroon on hover */
-  }
-  
-  nav ul li a.active {
-    color: #73c49f; /* Maroon for active link */
-    border-bottom: 2px solid #8B0000; /* Underline for active link */
-  }
+  background: #1f1f1f;
+  color: #f0f0f0;
+  padding: 1rem 0;
+  border-bottom: 2px solid #00BFA6;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-  /* Hero Section */
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00BFA6;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: #f0f0f0;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #FFD700;
+}
+
+nav ul li a.active {
+  color: #FFD700;
+  border-bottom: 2px solid #00BFA6;
+}
+
+/* Hero Section */
 #hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-    overflow: hidden;
-  }
-  
-  .hero-container {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  }
-  
-  .hero-content h1 {
-    font-size: 3.5rem;
-    color: #fff;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-content h1 .typing {
-    color: #73c49f; /* Maroon for typing effect */
-  }
-  
-  .hero-content p {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-bottom: 2rem;
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background: #73c49f; /* Maroon button */
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-  
-  .btn:hover {
-    background: #a86a54; /* Orange-red on hover */
-    transform: translateY(-5px);
-  }
-  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+  overflow: hidden;
+}
+
+.hero-container {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  color: #f0f0f0;
+  margin-bottom: 1rem;
+}
+
+.hero-content h1 .typing {
+  color: #FFD700;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  color: #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  background: #00BFA6;
+  color: #121212;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background: #FFD700;
+  transform: translateY(-5px);
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #00BFA6, #FFD700, #00BFA6);
+  opacity: 0.07;
+  z-index: 1;
+  animation: gradientAnimation 10s infinite alternate;
+}
+
+@keyframes gradientAnimation {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
   /* Animated Background */
   #hero::before {
     content: "";
