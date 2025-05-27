@@ -62,11 +62,11 @@ nav {
   }
   
   nav ul li a:hover {
-    color: #8B0000; /* Maroon on hover */
+    color: #73c49f; /* Maroon on hover */
   }
   
   nav ul li a.active {
-    color: #8B0000; /* Maroon for active link */
+    color: #73c49f; /* Maroon for active link */
     border-bottom: 2px solid #8B0000; /* Underline for active link */
   }
 
@@ -100,7 +100,7 @@ nav {
   }
   
   .hero-content h1 .typing {
-    color: #8B0000; /* Maroon for typing effect */
+    color: #73c49f; /* Maroon for typing effect */
   }
   
   .hero-content p {
@@ -112,7 +112,7 @@ nav {
   .btn {
     display: inline-block;
     padding: 0.75rem 2rem;
-    background: #8B0000; /* Maroon button */
+    background: #73c49f; /* Maroon button */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -121,7 +121,7 @@ nav {
   }
   
   .btn:hover {
-    background: #ff4500; /* Orange-red on hover */
+    background: #a86a54; /* Orange-red on hover */
     transform: translateY(-5px);
   }
   
@@ -164,7 +164,7 @@ nav {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 3px solid #8B0000; /* Maroon border */
+    border: 3px solid #73c49f; /* Maroon border */
   }
   
   /* Experience Section */
@@ -178,12 +178,12 @@ nav {
     padding: 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
-    border: 1px solid #8B0000; /* Maroon border */
+    border: 1px solid #73c49f; /* Maroon border */
   }
   
   .experience-item h3 {
     margin-top: 0;
-    color: #8B0000; /* Maroon heading */
+    color: #73c49f; /* Maroon heading */
   }
   
   /* Projects Section */
@@ -203,7 +203,7 @@ nav {
     padding: 1rem;
     border-radius: 5px;
     text-align: center;
-    border: 1px solid #8B0000; /* Maroon border */
+    border: 1px solid #73c49f; /* Maroon border */
   }
   
   .project-card img {
@@ -211,11 +211,11 @@ nav {
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
-    border: 2px solid #8B0000; /* Maroon border */
+    border: 2px solid #73c49f; /* Maroon border */
   }
   
   .project-card h3 {
-    color: #8B0000; /* Maroon heading */
+    color:#73c49f; /* Maroon heading */
   }
   
 /* Skills Section */
@@ -227,7 +227,7 @@ nav {
   #skills h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #8B0000; /* Maroon heading */
+    color: #73c49f; /* Maroon heading */
   }
   
   .skills-grid {
@@ -240,12 +240,12 @@ nav {
     background: #1a1a1a; /* Slightly lighter dark background */
     padding: 1.5rem;
     border-radius: 10px;
-    border: 1px solid #8B0000; /* Maroon border */
+    border: 1px solid #73c49f; /* Maroon border */
   }
   
   .skills-category h3 {
     margin-top: 0;
-    color: #8B0000; /* Maroon heading */
+    color: #73c49f; /* Maroon heading */
     text-align: center;
     margin-bottom: 1rem;
   }
@@ -258,7 +258,7 @@ nav {
   }
   
   .skills-list span {
-    background: #8B0000; /* Maroon background */
+    background: #73c49f; /* Maroon background */
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -315,7 +315,7 @@ nav {
   
   .form-group input:focus,
   .form-group textarea:focus {
-    border-color: #8B0000; /* Maroon border on focus */
+    border-color: #73c49f; /* Maroon border on focus */
     outline: none;
   }
   
@@ -326,7 +326,7 @@ nav {
   .contact-form .btn {
     width: 100%;
     padding: 0.75rem;
-    background: #8B0000; /* Maroon button */
+    background: #73c49f; /* Maroon button */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -361,9 +361,9 @@ nav {
   }
   
   .social-links a:hover {
-    background: #8B0000; /* Maroon background on hover */
+    background: #73c49f; /* Maroon background on hover */
     color: #fff;
-    border-color: #8B0000;
+    border-color: #73c49f;
   }
   
   .social-links a i {
@@ -375,7 +375,7 @@ nav {
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    border-top: 2px solid #8B0000; /* Maroon border */
+    border-top: 2px solid #73c49f; /* Maroon border */
   }
 
   /* Scroll Animations */
@@ -397,7 +397,7 @@ section {
     bottom: 20px;
     right: 20px;
     padding: 10px 15px;
-    background: #8B0000; /* Maroon background */
+    background: #73c49f; /* Maroon background */
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -419,7 +419,7 @@ section {
   #blogs h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #8B0000; /* Maroon heading */
+    color: #73c49f; /* Maroon heading */
   }
   
   .blog-grid {
@@ -432,7 +432,7 @@ section {
     background: #1a1a1a; /* Slightly lighter dark background */
     padding: 1.5rem;
     border-radius: 10px;
-    border: 1px solid #8B0000; /* Maroon border */
+    border: 1px solid #73c49f; /* Maroon border */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -450,7 +450,7 @@ section {
   }
   
   .blog-card h3 {
-    color: #8B0000; /* Maroon heading */
+    color: #73c49f; /* Maroon heading */
     margin-bottom: 0.5rem;
   }
   
@@ -462,7 +462,7 @@ section {
   .blog-card .btn {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #8B0000; /* Maroon button */
+    background: #73c49f; /* Maroon button */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
