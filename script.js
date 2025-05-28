@@ -8,6 +8,14 @@ document.querySelectorAll('nav ul li a').forEach(anchor => {
     });
   });
   
+  // Add smooth scrolling for the hero section button
+  document.querySelector('#hero .btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+    });
+  });
+  
   // Typing Animation for Hero Section
   const typingElement = document.querySelector('.typing');
   const text = "Mohammad Aliyawar Khan";
