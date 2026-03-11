@@ -304,7 +304,7 @@ class AIChatbot {
         respond: (_, lang) => this.formatContactResponse(lang)
       },
       {
-        match: (query) => this.matches(query, ['education', 'study', 'studied', 'university', 'degree', 'master', 'concordia', 'bachelor', "bachelor's", 'undergraduate', 'diploma', 'jamia', 'aligarh']),
+        match: (query) => this.matches(query, ['education', 'study', 'studied', 'studying', 'studying now', 'what are you studying', 'what are you studying now', 'current study', 'current program', 'university', 'degree', 'master', 'masters', "master's", 'concordia', 'bachelor', "bachelor's", 'undergraduate', 'diploma', 'jamia', 'aligarh']),
         respond: (_, lang, userMessage) => this.formatEducationResponse(lang, userMessage)
       },
       {
@@ -332,7 +332,7 @@ class AIChatbot {
         respond: (_, lang) => this.formatBlogsResponse(lang)
       },
       {
-        match: (query) => this.matches(query, ['life', 'background', 'story', 'journey', 'born', 'birthplace', 'village', 'dewaitha', 'ghazipur', 'dildarnagar', 'minto circle', 'syedna tahir saifuddin', 'class 10', 'class 12', 'school']),
+        match: (query) => this.matches(query, ['life', 'background', 'story', 'journey', 'born', 'birthplace', 'village', 'dewaitha', 'ghazipur', 'dildarnagar', 'minto circle', 'syedna tahir saifuddin', 'class 10', 'class 12', 'school', 'where are you now', 'where do you live', 'current location', 'living now', 'moved to canada', 'move to canada', 'moved to montreal', 'move to montreal', 'canada', 'montreal']),
         respond: (_, lang) => this.formatLifeJourneyResponse(lang)
       },
       {
