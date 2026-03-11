@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohammad Aliyawar Khan - Data Scientist Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammad Aliyawar Khan - Portfolio</title>
+
+  <!-- SEO meta -->
+  <meta name="description" content="Portfolio of Mohammad Aliyawar Khan — Data Scientist & ML Engineer in Montreal. Projects: DeepMed, Fraud Detection, Elasticsearch, CODIS.">
+  <link rel="canonical" href="https://md-aliyawar-khan.github.io/portfolio-website/">
+
+  <!-- Preconnect / DNS hints -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="//unpkg.com">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- Advanced Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  
+  <!-- Dynamic Portfolio Services -->
+  <script src="config.js"></script>
+  <script src="services/api-service.js"></script>
+  <script src="services/ai-chatbot.js"></script>
+  <script src="services/dynamic-content.js"></script>
+  
+  <!-- Favicon and Meta Tags -->
   <link rel="apple-touch-icon" sizes="57x57" href="Assets/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="Assets/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="Assets/apple-icon-72x72.png">
@@ -20,15 +44,15 @@
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="Assets/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="Assets/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="Assets/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="Assets/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Mohammad Aliyawar Khan - Data Scientist Portfolio">
   <meta property="og:description" content="Portfolio of Mohammad Aliyawar Khan, a Data Scientist and Machine Learning Engineer.">
-  <meta property="og:image" content="https://md-aliyawar-khan.github.io/portfolio-website/assets/logo.png">
+  <meta property="og:image" content="https://md-aliyawar-khan.github.io/portfolio-website/Assets/logo.png">
   <meta property="og:url" content="https://md-aliyawar-khan.github.io/portfolio-website">
   <meta property="og:type" content="website">
 
@@ -36,31 +60,113 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mohammad Aliyawar Khan - Data Scientist Portfolio">
   <meta name="twitter:description" content="Portfolio of Mohammad Aliyawar Khan, a Data Scientist and Machine Learning Engineer.">
-  <meta name="twitter:image" content="https://md-aliyawar-khan.github.io/portfolio-website/assets/logo.png">
+  <meta name="twitter:image" content="https://md-aliyawar-khan.github.io/portfolio-website/Assets/logo.png">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader">
+      <div class="loader-circle"></div>
+      <div class="loader-text">Loading...</div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <button id="theme-toggle-btn" aria-label="Toggle dark/light theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+  <div class="language-toggle">
+    <button id="lang-en" aria-label="Switch to English">EN</button>
+    <button id="lang-fr" aria-label="Passer en francais">FR</button>
+  </div>
+
   <!-- Navigation Bar -->
   <nav>
     <div class="container">
-      <a href="#" class="logo">Mohammad Aliyawar Khan</a>
-      <ul>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#blogs" class="nav-link">Blogs</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+      <a href="#hero" class="logo">Mohammad Aliyawar Khan</a>
+      <ul id="site-nav">
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">About</a></li>
+        <li><a href="#experience" class="nav-link" data-i18n="nav_experience">Experience</a></li>
+        <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Projects</a></li>
+        <li><a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a></li>
+        <li><a href="#blogs" class="nav-link" data-i18n="nav_blogs">Blogs</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
       </ul>
+      <button class="mobile-menu-btn" type="button" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
+  <main id="main-content">
   <!-- Hero Section -->
   <section id="hero">
+    <div id="particles-js"></div>
     <div class="hero-container">
       <div class="hero-content">
-        <h1>Hi, I am <span class="typing"></span></h1>
-        <p>Data Scientist | Machine Learning Engineer</p>
-        <a href="#projects" class="btn">View My Work</a>
+        <div class="hero-badge" data-i18n="hero_badge">Open to Data Science and ML Engineering roles</div>
+        <h1><span data-i18n="hero_greeting">Hi, I am</span> <span class="typing"></span></h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">Data Scientist | Machine Learning Engineer</p>
+        <p class="hero-description" data-i18n="hero_description">Transforming data into insights, building intelligent solutions</p>
+        <div class="hero-highlights">
+          <span class="hero-highlight" data-i18n="hero_highlight_1"><i class="fas fa-location-dot"></i> Montreal, Canada</span>
+          <span class="hero-highlight" data-i18n="hero_highlight_2"><i class="fas fa-graduation-cap"></i> MEng, Concordia University</span>
+          <span class="hero-highlight" data-i18n="hero_highlight_3"><i class="fas fa-chart-line"></i> ML, analytics, and full-stack delivery</span>
+        </div>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary" data-i18n="hero_view_work">View My Work</a>
+          <a href="#contact" class="btn btn-secondary" data-i18n="hero_get_in_touch">Get In Touch</a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-card">
+            <strong>15+</strong>
+            <span data-i18n="hero_proof_projects">projects shipped across ML, web, and data systems</span>
+          </div>
+          <div class="proof-card">
+            <strong>30%</strong>
+            <span data-i18n="hero_proof_impact">query performance improvement in distributed systems work</span>
+          </div>
+          <div class="proof-card">
+            <strong>95%</strong>
+            <span data-i18n="hero_proof_accuracy">accuracy achieved in medical image analysis research</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <section id="highlights" data-aos="fade-up">
+    <div class="container">
+      <div class="highlights-intro">
+        <p class="section-kicker" data-i18n="highlights_kicker">Why teams hire me</p>
+        <h2 class="section-title" data-i18n="highlights_title">Focused on outcomes, not just models</h2>
+        <p class="section-subtitle" data-i18n="highlights_subtitle">I bridge research, engineering, and communication so projects move from idea to measurable result.</p>
+      </div>
+      <div class="highlights-grid">
+        <article class="highlight-card">
+          <span class="highlight-icon"><i class="fas fa-brain"></i></span>
+          <h3 data-i18n="highlight_card_1_title">Applied ML that solves real problems</h3>
+          <p data-i18n="highlight_card_1_desc">From fraud detection to medical imaging, I build models around business or research goals instead of chasing complexity.</p>
+        </article>
+        <article class="highlight-card">
+          <span class="highlight-icon"><i class="fas fa-database"></i></span>
+          <h3 data-i18n="highlight_card_2_title">Strong systems and data foundations</h3>
+          <p data-i18n="highlight_card_2_desc">I enjoy the engineering side too: search, APIs, distributed systems, dashboards, and the tooling that keeps projects reliable.</p>
+        </article>
+        <article class="highlight-card">
+          <span class="highlight-icon"><i class="fas fa-people-group"></i></span>
+          <h3 data-i18n="highlight_card_3_title">Clear collaboration and delivery</h3>
+          <p data-i18n="highlight_card_3_desc">I turn technical work into readable reports, usable products, and stakeholder-friendly explanations that help teams move faster.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -68,24 +174,45 @@
   <!-- About Section -->
   <section id="about" data-aos="fade-up">
     <div class="container">
-      <h2>About Me</h2>
+      <h2 class="section-title" data-i18n="about_title">About Me</h2>
       <div class="about-content">
-        <img src="Assets/zeeshan khan.jpg" alt="Profile photo of Mohammad Aliyawar Khan">
+        <div class="about-image">
+          <img src="Assets/zeeshan khan.jpg" alt="Profile photo of Mohammad Aliyawar Khan" loading="lazy">
+          <div class="image-overlay">
+            <div class="stats">
+              <div class="stat">
+                <span class="stat-number" data-target="3">0</span>
+                <span class="stat-label" data-i18n="about_years_experience">Years Experience</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" data-target="15">0</span>
+                <span class="stat-label" data-i18n="about_projects_completed">Projects Completed</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" data-target="5">0</span>
+                <span class="stat-label" data-i18n="about_technologies">Technologies</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <div>
-          <p>
+        <div class="about-text">
+          <p data-i18n="about_intro">
             I am a passionate <strong>Data Scientist</strong> and <strong>Software Engineer</strong> with a Master in Engineering - Software Engineering from Concordia University, Montreal. 
             I specialize in machine learning, data analysis, and distributed systems, with hands-on experience in building scalable solutions and advanced algorithms.
           </p>
-          <p>
+          <p data-i18n="about_expertise_intro">
             My expertise includes:
-            <ul>
-              <li>Developing machine learning models for fraud detection and medical image analysis.</li>
-              <li>Optimizing distributed systems like Elasticsearch for big data analytics.</li>
-              <li>Building full-stack web applications using React, Node.js, and Flask.</li>
-            </ul>
           </p>
-          <a href="assets/khan_resume_Rp.pdf" download class="btn">Download Resume</a>
+          <ul class="expertise-list">
+            <li data-i18n="about_expertise_1"><i class="fas fa-check"></i> Developing machine learning models for fraud detection and medical image analysis.</li>
+            <li data-i18n="about_expertise_2"><i class="fas fa-check"></i> Optimizing distributed systems like Elasticsearch for big data analytics.</li>
+            <li data-i18n="about_expertise_3"><i class="fas fa-check"></i> Building full-stack web applications using React, Node.js, and Flask.</li>
+          </ul>
+          <div class="about-buttons">
+            <a href="Assets/KHAN_MD_A.pdf" download class="btn btn-primary" data-i18n="about_download_resume">Download Resume</a>
+            <a href="#contact" class="btn btn-outline" data-i18n="about_lets_talk">Let's Talk</a>
+          </div>
         </div>
       </div>
     </div>
@@ -94,15 +221,29 @@
   <!-- Experience Section -->
   <section id="experience" data-aos="fade-up">
     <div class="container">
-      <h2>Experience</h2>
-      <div class="experience-item">
-        <h3>Software Engineer Intern</h3>
-        <p><strong>NIMACT</strong> | Ghazipur, UP, India | June 2023 - December 2023</p>
-        <ul>
-          <li>Completed advanced training in software development, including HTML, CSS, JavaScript, and C++.</li>
-          <li>Collaborated with teams to build database systems for analyzing large datasets using machine learning techniques.</li>
-          <li>Created informative reports, dashboards, and visualizations for data-driven decision-making.</li>
-        </ul>
+      <h2 class="section-title" data-i18n="experience_title">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3 data-i18n="experience_role_1">Software Engineer Intern</h3>
+              <span class="timeline-date" data-i18n="experience_date_1">June 2023 - December 2023</span>
+            </div>
+            <div class="timeline-company" data-i18n="experience_company_1">NIMACT | Ghazipur, UP, India</div>
+            <ul class="timeline-description">
+              <li data-i18n="experience_desc_1_1">Completed advanced training in software development, including HTML, CSS, JavaScript, and C++.</li>
+              <li data-i18n="experience_desc_1_2">Collaborated with teams to build database systems for analyzing large datasets using machine learning techniques.</li>
+              <li data-i18n="experience_desc_1_3">Created informative reports, dashboards, and visualizations for data-driven decision-making.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag" data-i18n="experience_tag_1_1">HTML/CSS</span>
+              <span class="tag" data-i18n="experience_tag_1_2">JavaScript</span>
+              <span class="tag" data-i18n="experience_tag_1_3">C++</span>
+              <span class="tag" data-i18n="experience_tag_1_4">Machine Learning</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -110,88 +251,122 @@
   <!-- Projects Section -->
   <section id="projects" data-aos="fade-up">
     <div class="container">
-      <h2>Projects</h2>
+      <h2 class="section-title" data-i18n="projects_title">Projects</h2>
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all" data-i18n="projects_filter_all">All</button>
+        <button class="filter-btn" data-filter="ml" data-i18n="projects_filter_ml">Machine Learning</button>
+        <button class="filter-btn" data-filter="web" data-i18n="projects_filter_web">Web Development</button>
+        <button class="filter-btn" data-filter="data" data-i18n="projects_filter_data">Data Science</button>
+      </div>
       <div class="project-grid">
         <!-- Elasticsearch Project -->
-        <div class="project-card">
-          <img src="Assets/elasticsearch.jpeg" alt="Screenshot of Elasticsearch Project">
-
-          <h3>Elasticsearch: Distributed Systems</h3>
-          <p>
-            Evaluated Elasticsearch’s distributed systems features, including sharding and fault tolerance. 
-            Improved query performance by 30% and ensured 100% data availability during node failures.
-          </p>
-          <p><strong>Technologies:</strong> Elasticsearch, Docker, Python</p>
-          <a href="#" class="btn">View Details</a>
+        <div class="project-card" data-category="data">
+          <div class="project-image">
+            <img src="Assets/elasticsearch.jpeg" alt="Screenshot of Elasticsearch Project" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" data-project="elasticsearch">
+                  <i class="fas fa-eye"></i>
+                </a>
+                <a href="#" class="project-link pending-link" data-pending="project-code" aria-label="Project code link coming soon">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 data-i18n="project1_title">Elasticsearch: Distributed Systems</h3>
+            <p data-i18n="project1_desc">Evaluated Elasticsearch's distributed systems features, including sharding and fault tolerance. Improved query performance by 30% and ensured 100% data availability during node failures.</p>
+            <div class="project-tech">
+              <span class="tech-tag" data-i18n="project1_tech1">Elasticsearch</span>
+              <span class="tech-tag" data-i18n="project1_tech2">Docker</span>
+              <span class="tech-tag" data-i18n="project1_tech3">Python</span>
+              <span class="tech-tag" data-i18n="project1_tech4">Kibana</span>
+            </div>
+          </div>
         </div>
+        
         <!-- DeepMed Detection Project -->
-        <div class="project-card">
-          <img src="Assets/deepmed.jpg" alt="Screenshot of DeepMed Detection Project">
-
-          <h3>DeepMed Detection - Medical Image Analysis</h3>
-          <p>
-            Developed deep learning models for medical image interpretation, achieving high precision and recall rates. 
-            Implemented image segmentation for accurate structure recognition.
-          </p>
-          <p><strong>Technologies:</strong> TensorFlow, PyTorch</p>
-          <a href="#" class="btn">View Details</a>
+        <div class="project-card" data-category="ml">
+          <div class="project-image">
+            <img src="Assets/deepmed.jpg" alt="Screenshot of DeepMed Detection Project" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" data-project="deepmed">
+                  <i class="fas fa-eye"></i>
+                </a>
+                <a href="#" class="project-link pending-link" data-pending="project-code" aria-label="Project code link coming soon">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 data-i18n="project2_title">DeepMed Detection - Medical Image Analysis</h3>
+            <p data-i18n="project2_desc">Developed deep learning models for medical image interpretation, achieving high precision and recall rates. Implemented image segmentation for accurate structure recognition.</p>
+            <div class="project-tech">
+              <span class="tech-tag" data-i18n="project2_tech1">TensorFlow</span>
+              <span class="tech-tag" data-i18n="project2_tech2">PyTorch</span>
+              <span class="tech-tag" data-i18n="project2_tech3">Computer Vision</span>
+            </div>
+          </div>
         </div>
+        
         <!-- Fraud Detection Project -->
-        <div class="project-card">
-          <img src="Assets/fraud.jpg" alt="Screenshot of Fraud Detection Project">
+        <div class="project-card" data-category="ml">
+          <div class="project-image">
+            <picture>
+              <source srcset="Assets/fraud.webp" type="image/webp">
+              <img src="Assets/fraud.jpg" alt="Fraud detection dashboard" loading="lazy" width="800" height="450">
+            </picture>
 
-          <h3>Fraud Detection System</h3>
-          <p>
-            Built a machine learning system using RandomForest for detecting fraudulent transactions. 
-            Deployed the model using Flask API and integrated with Heroku for cloud deployment.
-          </p>
-          <p><strong>Technologies:</strong> Python, Flask, Heroku, GridSearchCV, SMOTE</p>
-          <a href="#" class="btn">View Details</a>
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" data-project="fraud">
+                  <i class="fas fa-eye"></i>
+                </a>
+                <a href="#" class="project-link pending-link" data-pending="project-code" aria-label="Project code link coming soon">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 data-i18n="project3_title">Fraud Detection System</h3>
+            <p data-i18n="project3_desc">Built a machine learning system using RandomForest for detecting fraudulent transactions. Deployed the model using Flask API and integrated with Heroku for cloud deployment.</p>
+            <div class="project-tech">
+              <span class="tech-tag" data-i18n="project3_tech1">Python</span>
+              <span class="tech-tag" data-i18n="project3_tech2">Flask</span>
+              <span class="tech-tag" data-i18n="project3_tech3">Heroku</span>
+              <span class="tech-tag" data-i18n="project3_tech4">RandomForest</span>
+            </div>
+          </div>
         </div>
+        
         <!-- CODIS Project -->
-        <div class="project-card">
-          <img src="Assets/codis.png" alt="Screenshot of CODIS Project">
-
-          <h3>CODIS: Coding Society Website</h3>
-          <p>
-            Developed a platform for coding enthusiasts using React and Node.js. 
-            Designed user-friendly pages, including registration and contact forms.
-          </p>
-          <p><strong>Technologies:</strong> React, Node.js</p>
-          <a href="#" class="btn">View Details</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blogs Section -->
-  <section id="blogs">
-    <div class="container">
-      <h2>Blogs</h2>
-      <div class="blog-grid">
-        <!-- Blog 1 -->
-        <div class="blog-card">
-          <img src="Assets/blog1.jpg" alt="Blog 1 Image">
-
-          <h3>Understanding Distributed Systems</h3>
-          <p>Learn the fundamentals of distributed systems, including sharding, replication, and fault tolerance.</p>
-          <a href="#" class="btn">Read More</a>
-        </div>
-        <!-- Blog 2 -->
-        <div class="blog-card">
-          <img src="Assets/blog2.jpg" alt="Blog 2 Image">
-
-          <h3>Introduction to Machine Learning</h3>
-          <p>A beginner-friendly guide to machine learning concepts, algorithms, and applications.</p>
-          <a href="#" class="btn">Read More</a>
-        </div>
-        <!-- Blog 3 -->
-        <div class="blog-card">
-          <img src="Assets/blog3.jpg" alt="Blog 3 Image">
-
-          <h3>Data Visualization with Python</h3>
-          <p>Explore data visualization techniques using Python libraries like Matplotlib and Seaborn.</p>
-          <a href="#" class="btn">Read More</a>
+        <div class="project-card" data-category="web">
+          <div class="project-image">
+            <img src="Assets/codis.png" alt="Screenshot of CODIS Project" loading="lazy">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a href="#" class="project-link" data-project="codis">
+                  <i class="fas fa-eye"></i>
+                </a>
+                <a href="#" class="project-link pending-link" data-pending="project-code" aria-label="Project code link coming soon">
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 data-i18n="project4_title">CODIS: Coding Society Website</h3>
+            <p data-i18n="project4_desc">Developed a platform for coding enthusiasts using React and Node.js. Designed user-friendly pages, including registration and contact forms.</p>
+            <div class="project-tech">
+              <span class="tech-tag" data-i18n="project4_tech1">React</span>
+              <span class="tech-tag" data-i18n="project4_tech2">Node.js</span>
+              <span class="tech-tag" data-i18n="project4_tech3">JavaScript</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -200,45 +375,106 @@
   <!-- Skills Section -->
   <section id="skills" data-aos="fade-up">
     <div class="container">
-      <h2>Technical Skills</h2>
+      <h2 class="section-title" data-i18n="skills_title">Technical Skills</h2>
       <div class="skills-grid">
         <!-- Languages -->
         <div class="skills-category">
-          <h3>Languages</h3>
-          <div class="skills-list">
-            <span>C++</span>
-            <span>Python</span>
-            <span>JavaScript</span>
-            <span>HTML/CSS</span>
-            <span>Java</span>
-            <span>SQL</span>
-            <span>LaTeX</span>
-          </div>
+          <h3 data-i18n="skills_languages_title"><i class="fas fa-code"></i> Languages</h3>
+          <ul class="skills-list">
+            <li class="skill-name" data-i18n="skills_language_python">Python</li>
+            <li class="skill-name" data-i18n="skills_language_js">JavaScript</li>
+            <li class="skill-name" data-i18n="skills_language_cpp">C++</li>
+            <li class="skill-name" data-i18n="skills_language_java">Java</li>
+            <li class="skill-name" data-i18n="skills_language_sql">SQL</li>
+          </ul>
         </div>
+        
         <!-- Libraries & Frameworks -->
         <div class="skills-category">
-          <h3>Libraries & Frameworks</h3>
-          <div class="skills-list">
-            <span>TensorFlow</span>
-            <span>PyTorch</span>
-            <span>Flask</span>
-            <span>React</span>
-            <span>Node.js</span>
-            <span>NumPy</span>
-            <span>Pandas</span>
-            <span>Scikit-Learn</span>
-          </div>
+          <h3 data-i18n="skills_frameworks_title"><i class="fas fa-layer-group"></i> Libraries & Frameworks</h3>
+          <ul class="skills-list">
+            <li class="skill-name" data-i18n="skills_framework_tensorflow">TensorFlow</li>
+            <li class="skill-name" data-i18n="skills_framework_pytorch">PyTorch</li>
+            <li class="skill-name" data-i18n="skills_framework_react">React</li>
+            <li class="skill-name" data-i18n="skills_framework_flask">Flask</li>
+            <li class="skill-name" data-i18n="skills_framework_node">Node.js</li>
+          </ul>
         </div>
+        
         <!-- Tools & Platforms -->
         <div class="skills-category">
-          <h3>Tools & Platforms</h3>
-          <div class="skills-list">
-            <span>Git</span>
-            <span>Docker</span>
-            <span>Tableau</span>
-            <span>Power BI</span>
-            <span>Jupyter Notebook</span>
-            <span>VS Code</span>
+          <h3 data-i18n="skills_tools_title"><i class="fas fa-tools"></i> Tools & Platforms</h3>
+          <ul class="skills-list">
+            <li class="skill-name" data-i18n="skills_tool_git">Git</li>
+            <li class="skill-name" data-i18n="skills_tool_docker">Docker</li>
+            <li class="skill-name" data-i18n="skills_tool_aws">AWS</li>
+            <li class="skill-name" data-i18n="skills_tool_tableau">Tableau</li>
+            <li class="skill-name" data-i18n="skills_tool_jupyter">Jupyter</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blogs Section -->
+  <section id="blogs" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title" data-i18n="blogs_title">Latest Blog Posts</h2>
+      <div class="blog-grid">
+        <!-- Blog 1 -->
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="Assets/blog1.jpg" alt="Illustration for Understanding Distributed Systems" loading="lazy">
+            <div class="blog-overlay">
+              <span class="blog-category" data-i18n="blog1_category">Distributed Systems</span>
+            </div>
+          </div>
+          <div class="blog-content">
+            <h3 data-i18n="blog1_title">Understanding Distributed Systems</h3>
+            <p data-i18n="blog1_desc">Learn the fundamentals of distributed systems, including sharding, replication, and fault tolerance.</p>
+            <div class="blog-meta">
+              <span><i class="far fa-calendar"></i> Dec 15, 2023</span>
+              <span><i class="far fa-clock"></i> 5 min read</span>
+            </div>
+            <a href="#" class="btn btn-outline pending-link" data-pending="blog-post" data-i18n="blog1_read_more">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 2 -->
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="Assets/blog2.jpg" alt="Introduction to Machine Learning concepts" loading="lazy">
+            <div class="blog-overlay">
+              <span class="blog-category" data-i18n="blog2_category">Machine Learning</span>
+            </div>
+          </div>
+          <div class="blog-content">
+            <h3 data-i18n="blog2_title">Introduction to Machine Learning</h3>
+            <p data-i18n="blog2_desc">A beginner-friendly guide to machine learning concepts, algorithms, and applications.</p>
+            <div class="blog-meta">
+              <span><i class="far fa-calendar"></i> Dec 10, 2023</span>
+              <span><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+            <a href="#" class="btn btn-outline pending-link" data-pending="blog-post" data-i18n="blog2_read_more">Read More</a>
+          </div>
+        </div>
+        
+        <!-- Blog 3 -->
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="Assets/blog3.jpg" alt="Data visualization with Python, Matplotlib and Seaborn" loading="lazy">
+            <div class="blog-overlay">
+              <span class="blog-category" data-i18n="blog3_category">Data Visualization</span>
+            </div>
+          </div>
+          <div class="blog-content">
+            <h3 data-i18n="blog3_title">Data Visualization with Python</h3>
+            <p data-i18n="blog3_desc">Explore data visualization techniques using Python libraries like Matplotlib and Seaborn.</p>
+            <div class="blog-meta">
+              <span><i class="far fa-calendar"></i> Dec 5, 2023</span>
+              <span><i class="far fa-clock"></i> 6 min read</span>
+            </div>
+            <a href="#" class="btn btn-outline pending-link" data-pending="blog-post" data-i18n="blog3_read_more">Read More</a>
           </div>
         </div>
       </div>
@@ -248,66 +484,160 @@
   <!-- Contact Section -->
   <section id="contact" data-aos="fade-up">
     <div class="container">
-      <h2>Contact Me</h2>
-      <p>Feel free to reach out for collaborations or opportunities!</p>
-      <form id="contact-form" class="contact-form" style="display: block;">
-        <!-- Name Field -->
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      <h2 class="section-title" data-i18n="contact_title">Get In Touch</h2>
+      <p class="section-subtitle" data-i18n="contact_subtitle">Feel free to reach out for collaborations or opportunities!</p>
+      
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact_email_label">Email</h4>
+              <p data-i18n="contact_email_value">md.aliyawar.khan@gmail.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact_location_label">Location</h4>
+              <p data-i18n="contact_location_value">Montreal, Quebec, Canada</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-details">
+              <h4 data-i18n="contact_phone_label">Phone</h4>
+              <p data-i18n="contact_phone_value">+1 (438) 787-0249</p>
+            </div>
+          </div>
         </div>
-        <!-- Email Field -->
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required>
-        </div>
-        <!-- Subject Field -->
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
-        </div>
-        <!-- Message Field -->
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
-        </div>
-        <!-- Submit Button -->
-        <button type="submit" class="btn">Send Message</button>
-      </form>
+
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" data-i18n="contact_form_name_label">Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required data-i18n-placeholder="contact_form_name_placeholder" minlength="2" maxlength="50">
+              <span class="error-message"></span>
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="contact_form_email_label">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required data-i18n-placeholder="contact_form_email_placeholder" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+              <span class="error-message"></span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject" data-i18n="contact_form_subject_label">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Enter the subject" required data-i18n-placeholder="contact_form_subject_placeholder" minlength="5" maxlength="100">
+            <span class="error-message"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" data-i18n="contact_form_message_label">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Enter your message" required data-i18n-placeholder="contact_form_message_placeholder" minlength="10" maxlength="1000"></textarea>
+            <span class="error-message"></span>
+          </div>
+          
+          <!-- Honeypot field to prevent spam -->
+          <input type="text" name="_gotcha" style="display:none">
+          
+          <button type="submit" class="btn btn-primary">
+            <span class="btn-text" data-i18n="contact_form_send">Send Message</span>
+            <span class="btn-loading">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
+        </form>
+      </div>
 
       <!-- Social Links -->
       <div class="social-links">
-        <a href="mailto:md.aliyawar.khan@gmail.com" target="_blank">
-          <i class="fas fa-envelope"></i> Email
+        <a href="mailto:md.aliyawar.khan@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <i class="fas fa-envelope"></i>
+          <span data-i18n="contact_social_email">Email</span>
         </a>
-        <a href="https://linkedin.com/in/md-aliyawar-khan" target="_blank">
-          <i class="fab fa-linkedin"></i> LinkedIn
+        <a href="https://linkedin.com/in/md-aliyawar-khan" target="_blank" rel="noopener noreferrer" class="social-link">
+          <i class="fab fa-linkedin"></i>
+          <span data-i18n="contact_social_linkedin">LinkedIn</span>
         </a>
-        <a href="https://github.com/md-aliyawar-khan" target="_blank">
-          <i class="fab fa-github"></i> GitHub
+        <a href="https://github.com/md-aliyawar-khan" target="_blank" rel="noopener noreferrer" class="social-link">
+          <i class="fab fa-github"></i>
+          <span data-i18n="contact_social_github">GitHub</span>
         </a>
-        <a href="https://twitter.com/md_aliyawar_khn" target="_blank">
-          <i class="fab fa-twitter"></i> Twitter
+        <a href="https://twitter.com/md_aliyawar_khn" target="_blank" rel="noopener noreferrer" class="social-link">
+          <i class="fab fa-twitter"></i>
+          <span data-i18n="contact_social_twitter">Twitter</span>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- Project Modal -->
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-body">
+        <!-- Content will be dynamically loaded -->
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; <span id="current-year"></span> Mohammad Aliyawar Khan. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 data-i18n="footer_name">Mohammad Aliyawar Khan</h3>
+          <p data-i18n="footer_desc">Data Scientist & Machine Learning Engineer passionate about creating intelligent solutions.</p>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n="footer_quick_links">Quick Links</h4>
+          <ul>
+            <li><a href="#about" data-i18n="footer_link_about">About</a></li>
+            <li><a href="#experience" data-i18n="footer_link_experience">Experience</a></li>
+            <li><a href="#projects" data-i18n="footer_link_projects">Projects</a></li>
+            <li><a href="#skills" data-i18n="footer_link_skills">Skills</a></li>
+            <li><a href="#blogs" data-i18n="footer_link_blogs">Blogs</a></li>
+            <li><a href="#contact" data-i18n="footer_link_contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n="footer_connect">Connect</h4>
+          <div class="footer-social">
+            <a href="https://linkedin.com/in/md-aliyawar-khan" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/md-aliyawar-khan" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/md_aliyawar_khn" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> <span data-i18n="footer_copyright">Mohammad Aliyawar Khan. All rights reserved.</span></p>
+      </div>
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  </main>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="script.js"></script>
-  <script>
-    // Initialize AOS
-    AOS.init();
-
-    // Update Footer Year
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
+
+
+
+
+

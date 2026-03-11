@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Portfolio Features Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demo-section {
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-active { background: #00ff00; }
+        .status-inactive { background: #ff0000; }
+        .status-loading { background: #ffff00; }
+        
+        .test-button {
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.5rem 0;
+            transition: var(--transition);
+        }
+        
+        .test-button:hover {
+            background: var(--secondary-color);
+        }
+        
+        .log-container {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        
+        .log-entry {
+            margin: 0.2rem 0;
+            padding: 0.2rem;
+        }
+        
+        .log-success { color: #00ff00; }
+        .log-error { color: #ff0000; }
+        .log-info { color: #00ffff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Dynamic Portfolio Features Demo</h1>
+        <p>This page demonstrates all the dynamic features added to your portfolio.</p>
+        
+        <div class="demo-section">
+            <h2><i class="fas fa-robot"></i> AI Chatbot</h2>
+            <p>Test the AI-powered chatbot that can answer questions about the portfolio.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Chatbot Status</h3>
+                    <p><span class="status-indicator status-active"></span>Active</p>
+                    <button class="test-button" onclick="testChatbot()">Test Chatbot</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Quick Actions</h3>
+                    <button class="test-button" onclick="testQuickAction('projects')">Ask About Projects</button>
+                    <button class="test-button" onclick="testQuickAction('skills')">Ask About Skills</button>
+                    <button class="test-button" onclick="testQuickAction('contact')">Ask About Contact</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2><i class="fab fa-github"></i> GitHub Integration</h2>
+            <p>Dynamic project loading and statistics from GitHub.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>GitHub Stats</h3>
+                    <div id="github-stats">
+                        <p><span class="status-indicator status-loading"></span>Loading...</p>
+                    </div>
+                    <button class="test-button" onclick="loadGitHubStats()">Refresh Stats</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Repository List</h3>
+                    <div id="repo-list">
+                        <p><span class="status-indicator status-loading"></span>Loading...</p>
+                    </div>
+                    <button class="test-button" onclick="loadRepositories()">Refresh Repos</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2><i class="fas fa-cloud-sun"></i> Weather Integration</h2>
+            <p>Real-time weather information for your location.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Current Weather</h3>
+                    <div id="weather-info">
+                        <p><span class="status-indicator status-loading"></span>Loading...</p>
+                    </div>
+                    <button class="test-button" onclick="loadWeather()">Refresh Weather</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2><i class="fas fa-chart-line"></i> Analytics & Tracking</h2>
+            <p>Visitor tracking and user interaction analytics.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Visitor Counter</h3>
+                    <div id="visitor-counter">
+                        <p><span class="status-indicator status-loading"></span>Loading...</p>
+                    </div>
+                    <button class="test-button" onclick="updateVisitorCount()">Update Counter</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Event Tracking</h3>
+                    <button class="test-button" onclick="trackTestEvent()">Track Test Event</button>
+                    <button class="test-button" onclick="trackPageView()">Track Page View</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2><i class="fas fa-magic"></i> AI Content Generation</h2>
+            <p>AI-powered content generation and analysis.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Content Generation</h3>
+                    <textarea id="ai-prompt" placeholder="Enter a prompt for AI content generation..." rows="3" style="width: 100%; margin: 0.5rem 0;"></textarea>
+                    <button class="test-button" onclick="generateAIContent()">Generate Content</button>
+                    <div id="ai-result" style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 5px; display: none;"></div>
+                </div>
+                <div class="feature-card">
+                    <h3>Sentiment Analysis</h3>
+                    <textarea id="sentiment-text" placeholder="Enter text for sentiment analysis..." rows="3" style="width: 100%; margin: 0.5rem 0;"></textarea>
+                    <button class="test-button" onclick="analyzeSentiment()">Analyze Sentiment</button>
+                    <div id="sentiment-result" style="margin-top: 1rem; padding: 1rem; background: var(--bg-tertiary); border-radius: 5px; display: none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2><i class="fas fa-terminal"></i> System Logs</h2>
+            <p>Real-time logs of all dynamic features and API calls.</p>
+            <div class="log-container" id="system-logs">
+                <div class="log-entry log-info">System initialized...</div>
+            </div>
+            <button class="test-button" onclick="clearLogs()">Clear Logs</button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="services/api-service.js"></script>
+    <script src="services/ai-chatbot.js"></script>
+    <script src="services/dynamic-content.js"></script>
+    
+    <script>
+        // Demo functionality
+        function log(message, type = 'info') {
+            const logsContainer = document.getElementById('system-logs');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logsContainer.appendChild(logEntry);
+            logsContainer.scrollTop = logsContainer.scrollHeight;
+        }
+
+        function clearLogs() {
+            document.getElementById('system-logs').innerHTML = '<div class="log-entry log-info">Logs cleared...</div>';
+        }
+
+        // Test functions
+        async function testChatbot() {
+            log('Testing chatbot functionality...', 'info');
+            if (chatbot) {
+                chatbot.toggleChat();
+                log('Chatbot toggled', 'success');
+            } else {
+                log('Chatbot not initialized', 'error');
+            }
+        }
+
+        function testQuickAction(action) {
+            log(`Testing quick action: ${action}`, 'info');
+            if (chatbot) {
+                chatbot.handleQuickAction(action);
+                log(`Quick action ${action} triggered`, 'success');
+            }
+        }
+
+        async function loadGitHubStats() {
+            log('Loading GitHub stats...', 'info');
+            try {
+                const stats = await apiService.getGitHubStats();
+                document.getElementById('github-stats').innerHTML = `
+                    <p><span class="status-indicator status-active"></span>Loaded</p>
+                    <p>Followers: ${stats.followers}</p>
+                    <p>Repositories: ${stats.publicRepos}</p>
+                    <p>Total Stars: ${stats.totalStars}</p>
+                    <p>Total Forks: ${stats.totalForks}</p>
+                `;
+                log('GitHub stats loaded successfully', 'success');
+            } catch (error) {
+                log(`GitHub stats error: ${error.message}`, 'error');
+            }
+        }
+
+        async function loadRepositories() {
+            log('Loading repositories...', 'info');
+            try {
+                const repos = await apiService.getGitHubRepos();
+                const repoList = repos.slice(0, 5).map(repo => 
+                    `<p>• ${repo.name} (${repo.language || 'N/A'}) - ⭐${repo.stars}</p>`
+                ).join('');
+                
+                document.getElementById('repo-list').innerHTML = `
+                    <p><span class="status-indicator status-active"></span>Loaded ${repos.length} repos</p>
+                    ${repoList}
+                `;
+                log(`Loaded ${repos.length} repositories`, 'success');
+            } catch (error) {
+                log(`Repository loading error: ${error.message}`, 'error');
+            }
+        }
+
+        async function loadWeather() {
+            log('Loading weather data...', 'info');
+            try {
+                const weather = await apiService.getWeather();
+                document.getElementById('weather-info').innerHTML = `
+                    <p><span class="status-indicator status-active"></span>Loaded</p>
+                    <p>Temperature: ${weather.temperature}°C</p>
+                    <p>Description: ${weather.description}</p>
+                    <p>Humidity: ${weather.humidity}%</p>
+                `;
+                log('Weather data loaded successfully', 'success');
+            } catch (error) {
+                log(`Weather loading error: ${error.message}`, 'error');
+            }
+        }
+
+        function updateVisitorCount() {
+            log('Updating visitor count...', 'info');
+            const currentCount = parseInt(localStorage.getItem('visitor_count') || '0');
+            const newCount = currentCount + Math.floor(Math.random() * 10) + 1;
+            localStorage.setItem('visitor_count', newCount.toString());
+            
+            document.getElementById('visitor-counter').innerHTML = `
+                <p><span class="status-indicator status-active"></span>Updated</p>
+                <p>Current Visitors: ${newCount.toLocaleString()}</p>
+            `;
+            log(`Visitor count updated to ${newCount}`, 'success');
+        }
+
+        function trackTestEvent() {
+            log('Tracking test event...', 'info');
+            apiService.trackEvent('demo_test_event', { 
+                timestamp: Date.now(),
+                feature: 'demo_page'
+            });
+            log('Test event tracked', 'success');
+        }
+
+        function trackPageView() {
+            log('Tracking page view...', 'info');
+            apiService.trackEvent('page_view', {
+                page: 'demo_page',
+                timestamp: Date.now()
+            });
+            log('Page view tracked', 'success');
+        }
+
+        async function generateAIContent() {
+            const prompt = document.getElementById('ai-prompt').value;
+            if (!prompt) {
+                log('Please enter a prompt', 'error');
+                return;
+            }
+
+            log('Generating AI content...', 'info');
+            try {
+                const result = await apiService.generateAIContent(prompt);
+                const resultDiv = document.getElementById('ai-result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Generated Content:</strong><br>${result || 'No content generated'}`;
+                log('AI content generated successfully', 'success');
+            } catch (error) {
+                log(`AI content generation error: ${error.message}`, 'error');
+            }
+        }
+
+        async function analyzeSentiment() {
+            const text = document.getElementById('sentiment-text').value;
+            if (!text) {
+                log('Please enter text for analysis', 'error');
+                return;
+            }
+
+            log('Analyzing sentiment...', 'info');
+            try {
+                const result = await apiService.analyzeSentiment(text);
+                const resultDiv = document.getElementById('sentiment-result');
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `<strong>Sentiment Analysis:</strong><br>${JSON.stringify(result, null, 2)}`;
+                log('Sentiment analysis completed', 'success');
+            } catch (error) {
+                log(`Sentiment analysis error: ${error.message}`, 'error');
+            }
+        }
+
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', () => {
+            log('Demo page loaded', 'info');
+            
+            // Auto-load some data
+            setTimeout(() => {
+                loadGitHubStats();
+                loadWeather();
+                updateVisitorCount();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
