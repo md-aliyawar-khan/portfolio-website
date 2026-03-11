@@ -3345,3 +3345,41 @@ body[data-theme="light"] .blog-chip {
 body[data-theme="light"] .blog-chip-line {
   background: linear-gradient(90deg, transparent, rgba(15,23,42,0.16), transparent);
 }
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chatbot-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.chatbot-clear {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: transparent;
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.chatbot-clear:hover,
+.chatbot-clear:focus-visible {
+  background: rgba(20, 184, 166, 0.12);
+  border-color: rgba(20, 184, 166, 0.45);
+  color: #14b8a6;
+  outline: none;
+}
+
+body[data-theme="light"] .chatbot-clear {
+  border-color: rgba(15, 23, 42, 0.16);
+}

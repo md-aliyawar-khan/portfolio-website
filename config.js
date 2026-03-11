@@ -73,7 +73,7 @@ const CONFIG = {
     
     // Content generation settings
     AI_CONTENT: {
-      ENABLED: true,
+      ENABLED: false,
       MAX_TOKENS: 150,
       TEMPERATURE: 0.7,
       AUTO_GENERATE: {
@@ -86,9 +86,9 @@ const CONFIG = {
     // Personalization settings
     PERSONALIZATION: {
       ENABLED: true,
-      TRACK_PREFERENCES: true,
-      ADAPTIVE_CONTENT: true,
-      SMART_RECOMMENDATIONS: true
+      TRACK_PREFERENCES: false,
+      ADAPTIVE_CONTENT: false,
+      SMART_RECOMMENDATIONS: false
     }
   },
   
@@ -97,20 +97,20 @@ const CONFIG = {
     LAZY_LOADING: true,
     IMAGE_OPTIMIZATION: true,
     CACHE_DURATION: 24 * 60 * 60 * 1000, // 24 hours
-    PREFETCH_LINKS: true,
-    SERVICE_WORKER: true
+    PREFETCH_LINKS: false,
+    SERVICE_WORKER: false
   },
   
   // Feature Flags
   FEATURES: {
     AI_CHATBOT: true,
-    DYNAMIC_PROJECTS: true,
-    LIVE_BLOG_FEED: true,
-    WEATHER_INTEGRATION: true,
-    VISITOR_COUNTER: true,
-    SMART_NOTIFICATIONS: true,
-    VOICE_COMMANDS: true,
-    GESTURE_CONTROLS: true,
+    DYNAMIC_PROJECTS: false,
+    LIVE_BLOG_FEED: false,
+    WEATHER_INTEGRATION: false,
+    VISITOR_COUNTER: false,
+    SMART_NOTIFICATIONS: false,
+    VOICE_COMMANDS: false,
+    GESTURE_CONTROLS: false,
     AR_EXPERIENCE: false, // Augmented Reality
     VR_PORTFOLIO: false   // Virtual Reality
   },
@@ -118,13 +118,13 @@ const CONFIG = {
   // Localization
   LANGUAGES: {
     DEFAULT: 'en',
-    SUPPORTED: ['en', 'fr', 'es', 'ar'],
-    AUTO_DETECT: true
+    SUPPORTED: ['en', 'fr'],
+    AUTO_DETECT: false
   },
   
   // Theme Settings
   THEMES: {
-    AUTO_SWITCH: true, // Switch based on time of day
+    AUTO_SWITCH: false, // Keep theme stable unless the user changes it
     PREFERRED_THEME: 'dark',
     CUSTOM_COLORS: {
       primary: '#00BFA6',
