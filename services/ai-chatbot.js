@@ -304,8 +304,8 @@ class AIChatbot {
         respond: (_, lang) => this.formatContactResponse(lang)
       },
       {
-        match: (query) => this.matches(query, ['education', 'study', 'studied', 'university', 'degree', 'master', 'concordia']),
-        respond: (_, lang) => this.formatEducationResponse(lang)
+        match: (query) => this.matches(query, ['education', 'study', 'studied', 'university', 'degree', 'master', 'concordia', 'bachelor', "bachelor's", 'undergraduate', 'diploma', 'jamia', 'aligarh']),
+        respond: (_, lang, userMessage) => this.formatEducationResponse(lang, userMessage)
       },
       {
         match: (query) => this.matches(query, ['experience', 'intern', 'work', 'nimact', 'job']),
@@ -316,12 +316,24 @@ class AIChatbot {
         respond: (_, lang) => this.formatSkillsResponse(lang)
       },
       {
+        match: (query) => this.matches(query, ['hobby', 'hobbies', 'interests', 'free time', 'fun', 'outside work', 'soccer', 'football', 'hiking', 'travel', 'travelling', 'traveling']),
+        respond: (_, lang) => this.formatHobbiesResponse(lang)
+      },
+      {
+        match: (query) => this.matches(query, ['favorite club', 'favourite club', 'favorite team', 'favourite team', 'real madrid', 'argentina', 'lionel messi', 'messi']),
+        respond: (_, lang, userMessage) => this.formatFavoritesResponse(lang, userMessage)
+      },
+      {
         match: (query) => this.matches(query, ['projects', 'project', 'portfolio work', 'built', 'portfolio']),
         respond: (_, lang) => this.formatProjectsOverview(lang)
       },
       {
         match: (query) => this.matches(query, ['blog', 'blogs', 'article', 'articles', 'writing']),
         respond: (_, lang) => this.formatBlogsResponse(lang)
+      },
+      {
+        match: (query) => this.matches(query, ['life', 'background', 'story', 'journey', 'born', 'birthplace', 'village', 'dewaitha', 'ghazipur', 'dildarnagar', 'minto circle', 'syedna tahir saifuddin', 'class 10', 'class 12', 'school']),
+        respond: (_, lang) => this.formatLifeJourneyResponse(lang)
       },
       {
         match: (query) => this.matches(query, ['who is mohammad', 'about mohammad', 'about you', 'introduce', 'tell me about mohammad']),
@@ -344,7 +356,7 @@ class AIChatbot {
   formatResumeResponse(lang) {
     const profile = this.profile;
     if (lang === 'fr') {
-      return `Vous pouvez télécharger le CV de Mohammad ici : [Télécharger le CV](${profile.resumeUrl}). Si vous voulez, je peux aussi résumer sa formation, ses compétences ou ses projets.`;
+      return `Vous pouvez tï¿½lï¿½charger le CV de Mohammad ici : [Tï¿½lï¿½charger le CV](${profile.resumeUrl}). Si vous voulez, je peux aussi rï¿½sumer sa formation, ses compï¿½tences ou ses projets.`;
     }
 
     return `You can download Mohammad's resume here: [Download Resume](${profile.resumeUrl}). If you want, I can also summarize his education, skills, or projects.`;
@@ -353,25 +365,51 @@ class AIChatbot {
   formatContactResponse(lang) {
     const contact = this.profile.contact;
     if (lang === 'fr') {
-      return `Vous pouvez contacter Mohammad par email à **${contact.email}** ou par téléphone au **${contact.phone}**. Il est basé à **${contact.location}**. LinkedIn : [Profil](${contact.linkedin}) et GitHub : [Dépôts](${contact.github}).`;
+      return `Vous pouvez contacter Mohammad par email ï¿½ **${contact.email}** ou par tï¿½lï¿½phone au **${contact.phone}**. Il est basï¿½ ï¿½ **${contact.location}**. LinkedIn : [Profil](${contact.linkedin}) et GitHub : [Dï¿½pï¿½ts](${contact.github}).`;
     }
 
     return `You can contact Mohammad by email at **${contact.email}** or phone at **${contact.phone}**. He is based in **${contact.location}**. LinkedIn: [Profile](${contact.linkedin}) and GitHub: [Repositories](${contact.github}).`;
   }
 
-  formatEducationResponse(lang) {
+  formatEducationResponse(lang, userMessage) {
     const education = this.profile.education;
-    if (lang === 'fr') {
-      return `**Formation :** ${education.degreeFr} à **${education.school}** à **${education.locationFr}**. ${education.summaryFr}`;
+    const query = this.normalize(userMessage);
+
+    if (this.matches(query, ['bachelor', "bachelor's", 'undergraduate', 'aligarh', 'mathematics', 'statistics', 'physics'])) {
+      if (lang === 'fr') {
+        return `**Licence :** ${education.bachelors.degreeFr} ? **${education.bachelors.school}** ? **${education.bachelors.locationFr}** (${education.bachelors.dateFr}). ${education.bachelors.summaryFr}`;
+      }
+
+      return `**Bachelor's education:** ${education.bachelors.degree} from **${education.bachelors.school}** in **${education.bachelors.location}** (${education.bachelors.date}). ${education.bachelors.summary}`;
     }
 
-    return `**Education:** ${education.degree} from **${education.school}** in **${education.location}**. ${education.summary}`;
+    if (this.matches(query, ['diploma', 'post graduate diploma', 'pgdca', 'jamia', 'computer applications'])) {
+      if (lang === 'fr') {
+        return `**Dipl?me de troisi?me cycle :** ${education.diploma.degreeFr} ? **${education.diploma.school}** ? **${education.diploma.locationFr}** (${education.diploma.dateFr}). ${education.diploma.summaryFr}`;
+      }
+
+      return `**Postgraduate diploma:** ${education.diploma.degree} from **${education.diploma.school}** in **${education.diploma.location}** (${education.diploma.date}). ${education.diploma.summary}`;
+    }
+
+    if (this.matches(query, ['master', 'masters', "master's", 'concordia', 'software engineering'])) {
+      if (lang === 'fr') {
+        return `**Ma?trise :** ${education.masters.degreeFr} ? **${education.masters.school}** ? **${education.masters.locationFr}** (${education.masters.dateFr}). ${education.masters.summaryFr}`;
+      }
+
+      return `**Master's education:** ${education.masters.degree} from **${education.masters.school}** in **${education.masters.location}** (${education.masters.date}). ${education.masters.summary}`;
+    }
+
+    if (lang === 'fr') {
+      return `**Formation :** Mohammad poursuit actuellement une **${education.masters.degreeFr}** ? **${education.masters.school}** ? **${education.masters.locationFr}** (${education.masters.dateFr}). Avant cela, il a obtenu un **${education.diploma.degreeFr}** ? **${education.diploma.school}** et une **${education.bachelors.degreeFr}** ? **${education.bachelors.school}**.`;
+    }
+
+    return `**Education:** Mohammad is currently pursuing a **${education.masters.degree}** at **${education.masters.school}** in **${education.masters.location}** (${education.masters.date}). Before that, he completed a **${education.diploma.degree}** at **${education.diploma.school}** and a **${education.bachelors.degree}** at **${education.bachelors.school}**.`;
   }
 
   formatExperienceResponse(lang) {
     const experience = this.profile.experience[0];
     if (lang === 'fr') {
-      return `**Expérience :** ${experience.roleFr} chez **${experience.company}** à ${experience.locationFr} (${experience.date}). Points forts : ${experience.highlightsFr.join(' ')}.`;
+      return `**Expï¿½rience :** ${experience.roleFr} chez **${experience.company}** ï¿½ ${experience.locationFr} (${experience.date}). Points forts : ${experience.highlightsFr.join(' ')}.`;
     }
 
     return `**Experience:** ${experience.role} at **${experience.company}** in ${experience.location} (${experience.date}). Highlights: ${experience.highlights.join(' ')}.`;
@@ -380,16 +418,52 @@ class AIChatbot {
   formatSkillsResponse(lang) {
     const skills = this.profile.skills;
     if (lang === 'fr') {
-      return `**Compétences clés :** Langages : ${skills.languages.join(', ')}. Frameworks et bibliothèques : ${skills.frameworks.join(', ')}. Outils : ${skills.tools.join(', ')}.`;
+      return `**Comp?tences cl?s :** Langages : ${skills.languages.join(', ')}. Frameworks et biblioth?ques : ${skills.frameworks.join(', ')}. Outils : ${skills.tools.join(', ')}.`;
     }
 
     return `**Core skills:** Languages: ${skills.languages.join(', ')}. Frameworks and libraries: ${skills.frameworks.join(', ')}. Tools: ${skills.tools.join(', ')}.`;
   }
 
+  formatHobbiesResponse(lang) {
+    const hobbies = this.profile.personal.hobbies;
+    if (lang === 'fr') {
+      return `**Loisirs :** Mohammad aime jouer au football, faire de la randonn?e et voyager. Ces activit?s refl?tent son ?nergie, sa discipline et sa curiosit? en dehors du travail.`;
+    }
+
+    return `**Hobbies:** Mohammad enjoys playing soccer, hiking, and travelling. These interests reflect his energy, discipline, and curiosity outside of work.`;
+  }
+
+  formatFavoritesResponse(lang, userMessage) {
+    const query = this.normalize(userMessage);
+    const favorites = this.profile.personal.favorites;
+
+    if (this.matches(query, ['player', 'footballer', 'soccer player', 'messi', 'lionel messi'])) {
+      if (lang === 'fr') {
+        return `Le joueur pr?f?r? de Mohammad est **${favorites.player}**.`;
+      }
+
+      return `Mohammad's favorite player is **${favorites.player}**.`;
+    }
+
+    if (this.matches(query, ['argentina', 'national team'])) {
+      if (lang === 'fr') {
+        return `Son ?quipe nationale pr?f?r?e est **${favorites.nationalTeam}**.`;
+      }
+
+      return `His favorite national team is **${favorites.nationalTeam}**.`;
+    }
+
+    if (lang === 'fr') {
+      return `Le club pr?f?r? de Mohammad est **${favorites.club}**. Son ?quipe nationale pr?f?r?e est **${favorites.nationalTeam}**, et son joueur pr?f?r? est **${favorites.player}**.`;
+    }
+
+    return `Mohammad's favorite club is **${favorites.club}**. His favorite national team is **${favorites.nationalTeam}**, and his favorite player is **${favorites.player}**.`;
+  }
+
   formatProjectsOverview(lang) {
     const projectNames = this.profile.projects.map((project) => project.name).join('**, **');
     if (lang === 'fr') {
-      return `Les projets phares de Mohammad sont **${projectNames}**. Vous pouvez me demander un projet précis comme Elasticsearch, DeepMed, Fraud Detection ou CODIS.`;
+      return `Les projets phares de Mohammad sont **${projectNames}**. Vous pouvez me demander un projet prï¿½cis comme Elasticsearch, DeepMed, Fraud Detection ou CODIS.`;
     }
 
     return `Mohammad's featured projects are **${projectNames}**. Ask me about a specific one like Elasticsearch, DeepMed, Fraud Detection, or CODIS.`;
@@ -397,7 +471,7 @@ class AIChatbot {
 
   formatProjectResponse(project, lang) {
     if (lang === 'fr') {
-      return `**${project.name}:** ${project.descriptionFr} Technologies utilisées : ${project.tech.join(', ')}.`;
+      return `**${project.name}:** ${project.descriptionFr} Technologies utilisï¿½es : ${project.tech.join(', ')}.`;
     }
 
     return `**${project.name}:** ${project.description} Technologies used: ${project.tech.join(', ')}.`;
@@ -405,16 +479,26 @@ class AIChatbot {
 
   formatBlogsResponse(lang) {
     if (lang === 'fr') {
-      return `Le site présente actuellement des contenus sur les **systèmes distribués**, le **machine learning** et la **visualisation de données avec Python**. Vous pouvez les parcourir dans la section Blogs.`;
+      return `Le site pr?sente actuellement des contenus sur les **syst?mes distribu?s**, le **machine learning** et la **visualisation de donn?es avec Python**. Vous pouvez les parcourir dans la section Blogs.`;
     }
 
     return `The site currently features posts on **Distributed Systems**, **Machine Learning**, and **Data Visualization with Python**. You can explore them in the Blogs section.`;
   }
 
+  formatLifeJourneyResponse(lang) {
+    const life = this.profile.personal.lifeJourney;
+
+    if (lang === 'fr') {
+      return `**Parcours personnel :** Mohammad est n? dans le petit village de **Dewaitha**, dans le district de **Ghazipur, Uttar Pradesh**. Il a suivi sa scolarit? primaire jusqu'en classe 10 ? **Noble Senior Secondary School, Dildarnagar**. Ensuite, il a d?m?nag? ? **Aligarh** en **2016** pour poursuivre ses ?tudes secondaires ? **Aligarh Muslim University School - Syedna Tahir Saifuddin School (Minto Circle)**, o? il a termin? sa classe 12. Apr?s cela, il a rejoint le **Department of Mathematics, Aligarh Muslim University** pour poursuivre une **B.Sc. (Hons.) en math?matiques** avec une mineure en **physique** et **statistiques**. Plus tard, il a d?m?nag? ? **Montr?al, Canada** en **2024** et poursuit actuellement une **ma?trise en ing?nierie - g?nie logiciel** ? **Concordia University**.`;
+    }
+
+    return `**Life journey:** Mohammad was born in the small village of **Dewaitha** in **Ghazipur district, Uttar Pradesh**. He completed his primary education through class 10 at **Noble Senior Secondary School, Dildarnagar**. Later, he moved to **Aligarh** in **2016** for his secondary education and enrolled at **Aligarh Muslim University School - Syedna Tahir Saifuddin School (Minto Circle)**, where he completed class 12. He then joined the **Department of Mathematics at Aligarh Muslim University** to pursue a **B.Sc. (Hons.) in Mathematics**, with minors in **Physics** and **Statistics**. Later, he moved to **Montreal, Canada** in **2024** and is currently pursuing a **Master of Engineering in Software Engineering** at **Concordia University**.`;
+  }
+
   formatAboutResponse(lang) {
     const profile = this.profile;
     if (lang === 'fr') {
-      return `Ce portfolio appartient à **${profile.name}**, un **${profile.titleFr}** basé à **${profile.contact.locationFr}**. ${profile.summaryFr}`;
+      return `Ce portfolio appartient ï¿½ **${profile.name}**, un **${profile.titleFr}** basï¿½ ï¿½ **${profile.contact.locationFr}**. ${profile.summaryFr}`;
     }
 
     return `This portfolio belongs to **${profile.name}**, a **${profile.title}** based in **${profile.contact.location}**. ${profile.summary}`;
@@ -455,12 +539,12 @@ class AIChatbot {
       return {
         title: 'Assistant Portfolio',
         status: 'En ligne',
-        placeholder: 'Posez une question sur la formation, les projets, les compétences, le CV ou le contact...',
+        placeholder: 'Posez une question sur la formation, les projets, les compï¿½tences, le CV ou le contact...',
         toggleLabel: 'Ouvrir l\'assistant portfolio',
         quickActions: [
           { action: 'education', label: 'Formation' },
           { action: 'projects', label: 'Projets' },
-          { action: 'skills', label: 'Compétences' },
+          { action: 'skills', label: 'Compï¿½tences' },
           { action: 'resume', label: 'CV' },
           { action: 'contact', label: 'Contact' }
         ]
@@ -487,9 +571,9 @@ class AIChatbot {
     if (lang === 'fr') {
       return {
         education: 'Parlez-moi de la formation de Mohammad',
-        projects: 'Quels projets Mohammad a-t-il réalisés ?',
-        skills: 'Quelles sont les principales compétences de Mohammad ?',
-        resume: 'Comment puis-je télécharger le CV ?',
+        projects: 'Quels projets Mohammad a-t-il rï¿½alisï¿½s ?',
+        skills: 'Quelles sont les principales compï¿½tences de Mohammad ?',
+        resume: 'Comment puis-je tï¿½lï¿½charger le CV ?',
         contact: 'Comment puis-je contacter Mohammad ?'
       };
     }
@@ -506,13 +590,13 @@ class AIChatbot {
   getResponseCopy(lang) {
     if (lang === 'fr') {
       return {
-        welcome: 'Bonjour. Je peux répondre aux questions sur la formation, l\'expérience, les compétences, les projets, le CV et les coordonnées de Mohammad. Que souhaitez-vous savoir ?',
-        greeting: 'Bonjour. Je suis l\'assistant portfolio de Mohammad. Vous pouvez me demander sa formation, ses projets, ses compétences, son CV ou ses coordonnées.',
-        howAreYou: 'Je vais bien, merci. Je suis prêt à vous aider à découvrir le profil de Mohammad, ses projets et ses expériences.',
-        thanks: 'Avec plaisir. Si vous voulez, je peux aussi vous parler de ses projets, de sa formation, de ses compétences ou de la manière de le contacter.',
-        goodbye: 'Au revoir. N\'hésitez pas à revenir si vous voulez en savoir plus sur Mohammad, son CV ou ses projets.',
-        identity: 'Je suis l\'assistant portfolio de Mohammad. Je peux résumer sa formation, ses compétences, ses projets, son expérience, son CV et ses coordonnées.',
-        help: 'Je peux vous aider avec la **formation**, l\'**expérience**, les **compétences**, les **projets**, le **CV** et les **coordonnées**. Essayez par exemple : "Quelle est la formation de Mohammad ?", "Parlez-moi du projet CODIS" ou "Comment puis-je le contacter ?"'
+        welcome: 'Bonjour. Je peux rï¿½pondre aux questions sur la formation, l\'expï¿½rience, les compï¿½tences, les projets, le CV et les coordonnï¿½es de Mohammad. Que souhaitez-vous savoir ?',
+        greeting: 'Bonjour. Je suis l\'assistant portfolio de Mohammad. Vous pouvez me demander sa formation, ses projets, ses compï¿½tences, son CV ou ses coordonnï¿½es.',
+        howAreYou: 'Je vais bien, merci. Je suis prï¿½t ï¿½ vous aider ï¿½ dï¿½couvrir le profil de Mohammad, ses projets et ses expï¿½riences.',
+        thanks: 'Avec plaisir. Si vous voulez, je peux aussi vous parler de ses projets, de sa formation, de ses compï¿½tences ou de la maniï¿½re de le contacter.',
+        goodbye: 'Au revoir. N\'hï¿½sitez pas ï¿½ revenir si vous voulez en savoir plus sur Mohammad, son CV ou ses projets.',
+        identity: 'Je suis l\'assistant portfolio de Mohammad. Je peux rï¿½sumer sa formation, ses compï¿½tences, ses projets, son expï¿½rience, son CV et ses coordonnï¿½es.',
+        help: 'Je peux vous aider avec la **formation**, l\'**expï¿½rience**, les **compï¿½tences**, les **projets**, le **CV** et les **coordonnï¿½es**. Essayez par exemple : "Quelle est la formation de Mohammad ?", "Parlez-moi du projet CODIS" ou "Comment puis-je le contacter ?"'
       };
     }
 
@@ -567,64 +651,99 @@ class AIChatbot {
     return {
       name: 'Mohammad Aliyawar Khan',
       title: 'Data Scientist and Machine Learning Engineer',
-      titleFr: 'Data Scientist et ingénieur en machine learning',
+      titleFr: 'Data Scientist et ingï¿½nieur en machine learning',
       summary: 'He combines machine learning, data analysis, and software engineering to build practical, scalable solutions.',
-      summaryFr: 'Il combine le machine learning, l\'analyse de données et l\'ingénierie logicielle pour construire des solutions pratiques et évolutives.',
+      summaryFr: 'Il combine le machine learning, l\'analyse de donnï¿½es et l\'ingï¿½nierie logicielle pour construire des solutions pratiques et ï¿½volutives.',
       education: {
-        degree: 'Master in Engineering - Software Engineering',
-        degreeFr: 'Maîtrise en ingénierie - génie logiciel',
-        school: 'Concordia University',
-        location: 'Montreal, Canada',
-        locationFr: 'Montréal, Canada',
-        summary: 'His work focuses on machine learning, distributed systems, and data-driven product development.',
-        summaryFr: 'Son travail se concentre sur le machine learning, les systèmes distribués et le développement de produits guidé par les données.'
+        masters: {
+          degree: 'Master of Engineering (Software Engineering)',
+          degreeFr: 'Ma?trise en ing?nierie (g?nie logiciel)',
+          school: 'Concordia University',
+          location: 'Montreal, QC, Canada',
+          locationFr: 'Montr?al, QC, Canada',
+          date: 'Sep 2024 - Present',
+          dateFr: 'Sep 2024 - Pr?sent',
+          summary: 'His graduate work focuses on software engineering, machine learning, distributed systems, and practical product development.',
+          summaryFr: 'Son parcours de ma?trise se concentre sur le g?nie logiciel, le machine learning, les syst?mes distribu?s et le d?veloppement de produits concrets.'
+        },
+        diploma: {
+          degree: 'Post Graduate Diploma in Computer Applications',
+          degreeFr: 'Dipl?me de troisi?me cycle en applications informatiques',
+          school: 'Jamia Millia Islamia',
+          location: 'New Delhi, India',
+          locationFr: 'New Delhi, Inde',
+          date: 'Sep 2022 - Jun 2023',
+          dateFr: 'Sep 2022 - Juin 2023',
+          summary: 'This diploma strengthened his foundation in computer applications and software-focused technical work.',
+          summaryFr: 'Ce dipl?me a renforc? ses bases en applications informatiques et en travail technique orient? logiciel.'
+        },
+        bachelors: {
+          degree: 'B.Sc. (Hons.) Mathematics (Minor: Statistics, Physics)',
+          degreeFr: 'Licence avec mention en math?matiques (mineure : statistiques, physique)',
+          school: 'Aligarh Muslim University',
+          location: 'Aligarh, UP, India',
+          locationFr: 'Aligarh, Uttar Pradesh, Inde',
+          date: 'Jul 2019 - Aug 2022',
+          dateFr: 'Juil 2019 - Ao?t 2022',
+          summary: 'He built a strong analytical foundation through mathematics, with supporting study in statistics and physics.',
+          summaryFr: 'Il a construit une base analytique solide gr?ce aux math?matiques, compl?t?e par des ?tudes en statistiques et en physique.'
+        }
       },
       experience: [
         {
           role: 'Software Engineer Intern',
-          roleFr: 'Stagiaire ingénieur logiciel',
+          roleFr: 'Stagiaire ing?nieur logiciel',
           company: 'NIMACT',
           location: 'Ghazipur, UP, India',
           locationFr: 'Ghazipur, Uttar Pradesh, Inde',
-          date: 'June 2023 - December 2023',
+          date: 'Jun 2023 - Dec 2023',
+          dateFr: 'Juin 2023 - D?c 2023',
+          summary: 'He worked on software quality, database performance, testing automation, and machine-learning-based anomaly detection for production-oriented systems.',
+          summaryFr: 'Il a travaill? sur la qualit? logicielle, les performances des bases de donn?es, l\'automatisation des tests et la d?tection d\'anomalies bas?e sur le machine learning pour des syst?mes orient?s production.',
           highlights: [
-            'Completed advanced software development training in HTML, CSS, JavaScript, and C++.',
-            'Worked on database systems and machine-learning-based analysis for large datasets.',
-            'Created reports, dashboards, and visualizations for data-driven decisions.'
+            'Executed end-to-end validation of deployed web platforms, improving production readiness and achieving a 95 percent defect detection rate across responsive UI workflows.',
+            'Optimized relational database schemas and queries, reducing response time by 35 percent for key production workloads.',
+            'Developed QA test scripts for more than 10 interactive data-visualization pipelines, ensuring full accuracy of dashboard metrics through automated validation checks.',
+            'Automated UI and UX regression workflows, reducing regression issues by 40 percent and cutting manual QA effort by 20 hours per month.',
+            'Implemented machine-learning-based anomaly detection to flag outliers in real-time data streams, improving reliability and speeding up incident discovery.'
           ],
           highlightsFr: [
-            'A suivi une formation avancée en développement logiciel en HTML, CSS, JavaScript et C++.',
-            'A travaillé sur des systèmes de base de données et des analyses de grands jeux de données basées sur le machine learning.',
-            'A créé des rapports, des tableaux de bord et des visualisations pour soutenir la prise de décision.'
-          ]
+            'A r?alis? la validation de bout en bout de plateformes web d?ploy?es, am?liorant la pr?paration ? la production et atteignant un taux de d?tection des d?fauts de 95 pour cent sur les interfaces responsives.',
+            'A optimis? les sch?mas et requ?tes de bases de donn?es relationnelles, r?duisant de 35 pour cent le temps de r?ponse sur des charges critiques.',
+            'A d?velopp? des scripts QA pour plus de 10 pipelines interactifs de visualisation de donn?es, garantissant l\'exactitude compl?te des m?triques via des validations automatis?es.',
+            'A automatis? les workflows de r?gression UI et UX, r?duisant les probl?mes de r?gression de 40 pour cent et ?conomisant 20 heures de QA manuelle par mois.',
+            'A mis en place une d?tection d\'anomalies bas?e sur le machine learning pour rep?rer les valeurs aberrantes dans des flux de donn?es en temps r?el.'
+          ],
+          skills: ['Python', 'SQL', 'REST APIs', 'Git', 'CI/CD', 'Test Automation', 'Debugging', 'Agile/Scrum'],
+          skillsFr: ['Python', 'SQL', 'API REST', 'Git', 'CI/CD', 'Automatisation des tests', 'D?bogage', 'Agile/Scrum']
         }
       ],
       projects: [
         {
           name: 'Elasticsearch: Distributed Systems',
           description: 'Evaluated sharding, replication, and fault tolerance in Elasticsearch, improving query performance by 30 percent and maintaining high availability during node failures.',
-          descriptionFr: 'A évalué le sharding, la réplication et la tolérance aux pannes dans Elasticsearch, en améliorant les performances des requêtes de 30 pour cent tout en maintenant une haute disponibilité lors des pannes de nœuds.',
+          descriptionFr: 'A ï¿½valuï¿½ le sharding, la rï¿½plication et la tolï¿½rance aux pannes dans Elasticsearch, en amï¿½liorant les performances des requï¿½tes de 30 pour cent tout en maintenant une haute disponibilitï¿½ lors des pannes de nï¿½uds.',
           tech: ['Elasticsearch', 'Docker', 'Python', 'Kibana'],
           keywords: ['elasticsearch', 'distributed systems', 'search', 'kibana', 'docker']
         },
         {
           name: 'DeepMed Detection - Medical Image Analysis',
           description: 'Built deep learning models for medical image interpretation and segmentation with strong precision and recall.',
-          descriptionFr: 'A développé des modèles de deep learning pour l\'interprétation et la segmentation d\'images médicales avec une très bonne précision et un bon rappel.',
+          descriptionFr: 'A dï¿½veloppï¿½ des modï¿½les de deep learning pour l\'interprï¿½tation et la segmentation d\'images mï¿½dicales avec une trï¿½s bonne prï¿½cision et un bon rappel.',
           tech: ['TensorFlow', 'PyTorch', 'Computer Vision'],
           keywords: ['deepmed', 'medical', 'medical image', 'image analysis', 'computer vision']
         },
         {
           name: 'Fraud Detection System',
           description: 'Developed a machine learning fraud detection system using RandomForest and deployed it with Flask for practical use.',
-          descriptionFr: 'A développé un système de détection de fraude basé sur le machine learning avec RandomForest et l\'a déployé avec Flask pour un usage pratique.',
+          descriptionFr: 'A dï¿½veloppï¿½ un systï¿½me de dï¿½tection de fraude basï¿½ sur le machine learning avec RandomForest et l\'a dï¿½ployï¿½ avec Flask pour un usage pratique.',
           tech: ['Python', 'Flask', 'Heroku', 'RandomForest'],
           keywords: ['fraud', 'fraud detection', 'randomforest', 'flask', 'transactions']
         },
         {
           name: 'CODIS: Coding Society Website',
           description: 'Created a React and Node.js platform for a coding society with user-friendly registration and contact experiences.',
-          descriptionFr: 'A créé une plateforme React et Node.js pour une association de codage avec une expérience fluide pour l\'inscription et le contact.',
+          descriptionFr: 'A crï¿½ï¿½ une plateforme React et Node.js pour une association de codage avec une expï¿½rience fluide pour l\'inscription et le contact.',
           tech: ['React', 'Node.js', 'JavaScript'],
           keywords: ['codis', 'coding society', 'react', 'node', 'website']
         }
@@ -638,7 +757,7 @@ class AIChatbot {
         email: 'md.aliyawar.khan@gmail.com',
         phone: '+1 (438) 787-0249',
         location: 'Montreal, Quebec, Canada',
-        locationFr: 'Montréal, Québec, Canada',
+        locationFr: 'Montrï¿½al, Quï¿½bec, Canada',
         linkedin: 'https://linkedin.com/in/md-aliyawar-khan',
         github: 'https://github.com/md-aliyawar-khan'
       },
